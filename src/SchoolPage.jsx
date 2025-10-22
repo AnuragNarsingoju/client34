@@ -190,37 +190,38 @@ const SchoolPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-br from-blue-900 via-cyan-600 to-cyan-400 font-sans">
+    <div className="flex flex-col h-screen overflow-hidden bg-gray-50 font-sans">
       {/* Navbar */}
-      <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] z-[100] border-b-[3px] border-cyan-500/30 backdrop-blur-[10px]">
+      {/* Navbar */}
+      <nav className="bg-white text-gray-800 shadow-sm z-[100] border-b border-gray-200">
         {/* Top Bar with Logo and School Name */}
-        <div className="py-4 px-8 flex justify-between items-center border-b border-slate-700/50">
-          <div className="flex items-center gap-4">
-            <FaSchool className="text-[2.2rem] text-cyan-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] animate-[pulse_2s_ease-in-out_infinite]" />
-            <h2 className="text-2xl font-bold text-white m-0 [text-shadow:0_2px_4px_rgba(0,0,0,0.2)]">
+        <div className="py-3 px-4 lg:py-4 lg:px-8 flex justify-between items-center border-b border-gray-100">
+          <div className="flex items-center gap-2 lg:gap-4">
+            <FaSchool className="text-xl lg:text-2xl text-gray-700" />
+            <h2 className="text-base lg:text-xl font-semibold text-gray-800 m-0">
               School Dashboard
             </h2>
           </div>
           <div>
-            <h1 className="text-[1.8rem] font-extrabold text-white m-0 tracking-[-0.5px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+            <h1 className="text-lg lg:text-xl font-bold text-gray-800 m-0">
               School Name
             </h1>
           </div>
         </div>
 
         {/* Navigation Menu */}
-        <div className="px-8 py-0">
-          <ul className="flex items-center gap-1 m-0 p-0 list-none">
+        <div className="px-2 lg:px-8 py-0 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+          <ul className="flex items-center gap-0.5 lg:gap-1 m-0 p-0 list-none min-w-max">
             {navMenuItems.map((item, index) => {
               const isActiveMain = activeNav.mainIndex === index;
 
               return (
                 <li key={index} className="relative group">
                   <button
-                    className={`px-2 py-2 lg:px-4 lg:py-3 text-xs lg:text-sm font-semibold transition-all duration-300 cursor-pointer border-none bg-transparent uppercase tracking-wide relative text-cyan-100 hover:text-white hover:bg-slate-700/50 after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] lg:after:h-[3px] after:bg-cyan-400 after:transition-all after:duration-300 whitespace-nowrap ${
+                    className={`px-2 py-2 lg:px-4 lg:py-3 text-xs lg:text-sm font-medium cursor-pointer border-none bg-transparent uppercase tracking-wide relative whitespace-nowrap ${
                       isActiveMain
-                        ? "text-white bg-slate-700/60 after:w-full"
-                        : "after:w-0"
+                        ? "text-gray-900 bg-gray-100 border-b-2 border-gray-800"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     }`}
                     onClick={() =>
                       setActiveNav({ mainIndex: index, subIndex: null })
@@ -229,7 +230,7 @@ const SchoolPage = () => {
                     {item.title}
                   </button>
 
-                  <div className="absolute top-full left-0 mt-0 w-32 lg:w-40 bg-slate-800 shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-[-10px] group-hover:translate-y-0 z-[200] border-t-2 border-cyan-400">
+                  <div className="absolute top-full left-0 mt-0 w-32 lg:w-40 bg-white shadow-md rounded-b opacity-0 invisible group-hover:opacity-100 group-hover:visible z-[200] border border-gray-200">
                     <ul className="py-2 m-0 p-0 list-none">
                       {item.subItems.map((subItem, subIndex) => {
                         const isActiveSub =
@@ -240,10 +241,10 @@ const SchoolPage = () => {
                           <li key={subIndex}>
                             <a
                               href="#"
-                              className={`block px-3 py-2 lg:px-5 lg:py-3 text-xs lg:text-sm transition-all duration-200 no-underline border-l-4 hover:text-white hover:bg-slate-700/70 hover:border-cyan-400 hover:translate-x-1 ${
+                              className={`block px-3 py-2 lg:px-5 lg:py-3 text-xs lg:text-sm no-underline border-l-2 ${
                                 isActiveSub
-                                  ? "text-white bg-slate-700/70 border-cyan-400 translate-x-1"
-                                  : "text-cyan-100 border-transparent"
+                                  ? "text-gray-900 bg-gray-50 border-gray-800"
+                                  : "text-gray-600 border-transparent hover:text-gray-900 hover:bg-gray-50 hover:border-gray-400"
                               }`}
                               onClick={(e) => {
                                 e.preventDefault();
@@ -312,9 +313,9 @@ const SchoolPage = () => {
         </aside>
 
         {/* Right Content Area */}
-        <main className="flex-1 bg-white/10 p-4 lg:p-6 xl:p-10 overflow-y-auto backdrop-blur-[10px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
-          <div className="bg-white/95 rounded-[20px] p-6 lg:p-8 xl:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.3)] max-w-full border-2 border-white/50 backdrop-blur-[20px] animate-[slideIn_0.5s_ease-out]">
-            <h2 className="text-xl lg:text-3xl xl:text-[2.5rem] font-black bg-gradient-to-r from-blue-900 via-cyan-600 to-cyan-400 bg-clip-text text-transparent mb-6 lg:mb-8 xl:mb-10 text-center relative pb-4 lg:pb-6 uppercase tracking-wide after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] lg:after:w-[150px] after:h-[3px] lg:after:h-[5px] after:bg-gradient-to-r after:from-blue-900 after:via-cyan-600 after:to-cyan-400 after:rounded-[10px] after:shadow-[0_4px_15px_rgba(6,182,212,0.5)]">
+        <main className="flex-1 bg-gray-100 p-4 lg:p-6 xl:p-10 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <div className="bg-white rounded-lg p-6 lg:p-8 xl:p-12 shadow-sm max-w-full border border-gray-200">
+            <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-800 mb-6 lg:mb-8 xl:mb-10 text-center pb-4 lg:pb-6 uppercase tracking-wide border-b-2 border-gray-800">
               Student Registration Form
             </h2>
             <form onSubmit={handleSubmit}>
@@ -322,7 +323,7 @@ const SchoolPage = () => {
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="studentName"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Student Name
                   </label>
@@ -333,14 +334,14 @@ const SchoolPage = () => {
                     value={formData.studentName}
                     onChange={handleInputChange}
                     placeholder="Enter student name"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="rollNumber"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Roll Number
                   </label>
@@ -351,14 +352,14 @@ const SchoolPage = () => {
                     value={formData.rollNumber}
                     onChange={handleInputChange}
                     placeholder="Enter roll number"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="grade"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Grade
                   </label>
@@ -369,14 +370,14 @@ const SchoolPage = () => {
                     value={formData.grade}
                     onChange={handleInputChange}
                     placeholder="Enter grade"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="section"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Section
                   </label>
@@ -387,14 +388,14 @@ const SchoolPage = () => {
                     value={formData.section}
                     onChange={handleInputChange}
                     placeholder="Enter section"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="dateOfBirth"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Date of Birth
                   </label>
@@ -404,14 +405,14 @@ const SchoolPage = () => {
                     name="dateOfBirth"
                     value={formData.dateOfBirth}
                     onChange={handleInputChange}
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="parentName"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Parent/Guardian Name
                   </label>
@@ -422,14 +423,14 @@ const SchoolPage = () => {
                     value={formData.parentName}
                     onChange={handleInputChange}
                     placeholder="Enter parent name"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="contactNumber"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Contact Number
                   </label>
@@ -440,14 +441,14 @@ const SchoolPage = () => {
                     value={formData.contactNumber}
                     onChange={handleInputChange}
                     placeholder="Enter contact number"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                   <label
                     htmlFor="email"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Email Address
                   </label>
@@ -458,14 +459,14 @@ const SchoolPage = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Enter email address"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2 col-span-1">
                   <label
                     htmlFor="address"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Address
                   </label>
@@ -476,14 +477,14 @@ const SchoolPage = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                     placeholder="Enter full address"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
 
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2 col-span-1">
                   <label
                     htmlFor="emergencyContact"
-                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                    className="text-xs lg:text-sm font-semibold text-gray-700 capitalize lg:w-40 xl:w-48 shrink-0"
                   >
                     Emergency Contact
                   </label>
@@ -494,7 +495,7 @@ const SchoolPage = () => {
                     value={formData.emergencyContact}
                     onChange={handleInputChange}
                     placeholder="Enter emergency contact number"
-                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border border-gray-300 rounded text-sm lg:text-base bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
               </div>
@@ -503,9 +504,7 @@ const SchoolPage = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="py-3 px-8 lg:py-[1.125rem] lg:px-12 rounded-xl text-sm lg:text-[1.05rem] font-bold cursor-pointer uppercase tracking-wide relative overflow-hidden bg-blue-900 text-white shadow-[0_8px_25px_rgba(30,58,138,0.4)] border-2 border-blue-800 transition-all duration-300 w-full sm:w-auto
-    hover:bg-blue-800 hover:-translate-y-[3px] hover:scale-[1.02] hover:shadow-[0_12px_35px_rgba(30,58,138,0.5)] 
-    active:translate-y-[1px] active:scale-100 active:shadow-[0_4px_15px_rgba(30,58,138,0.4)]"
+                  className="py-3 px-8 lg:py-3 lg:px-10 rounded text-sm lg:text-base font-semibold cursor-pointer uppercase tracking-wide bg-gray-800 text-white border border-gray-800 w-full sm:w-auto hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 >
                   Submit
                 </button>
@@ -514,9 +513,7 @@ const SchoolPage = () => {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="py-3 px-8 lg:py-[1.125rem] lg:px-12 rounded-xl text-sm lg:text-[1.05rem] font-bold cursor-pointer uppercase tracking-wide relative overflow-hidden bg-cyan-600 text-white shadow-[0_8px_25px_rgba(6,182,212,0.4)] border-2 border-cyan-700 transition-all duration-300 w-full sm:w-auto
-    hover:bg-cyan-700 hover:-translate-y-[3px] hover:scale-[1.02] hover:shadow-[0_12px_35px_rgba(6,182,212,0.5)] 
-    active:translate-y-[1px] active:scale-100 active:shadow-[0_4px_15px_rgba(6,182,212,0.4)]"
+                  className="py-3 px-8 lg:py-3 lg:px-10 rounded text-sm lg:text-base font-semibold cursor-pointer uppercase tracking-wide bg-white text-gray-800 border border-gray-300 w-full sm:w-auto hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 >
                   Reset
                 </button>

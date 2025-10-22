@@ -1,5 +1,5 @@
-import React from 'react';
-import SchoolPage from './SchoolPage';
+import React from "react";
+import SchoolPage from "./SchoolPageNew";
 
 function App() {
   return (
