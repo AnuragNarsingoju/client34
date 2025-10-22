@@ -1,138 +1,331 @@
-import React, { useState } from 'react';
-import './SchoolPage.css';
-import { 
-  FaChartLine, 
-  FaUserGraduate, 
-  FaChalkboardTeacher, 
-  FaBookOpen, 
-  FaCalendarCheck, 
-  FaClipboardList, 
-  FaMoneyBillWave, 
-  FaBullhorn, 
-  FaFileAlt, 
+import React, { useState } from "react";
+import {
+  FaChartLine,
+  FaUserGraduate,
+  FaChalkboardTeacher,
+  FaBookOpen,
+  FaCalendarCheck,
+  FaClipboardList,
+  FaMoneyBillWave,
+  FaBullhorn,
+  FaFileAlt,
   FaCog,
   FaSchool,
-  FaBars
-} from 'react-icons/fa';
+  FaBars,
+} from "react-icons/fa";
 
 const SchoolPage = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarLinks, setSidebarLinks] = useState([
+    { icon: FaChartLine, label: "Dashboard", active: true },
+    { icon: FaUserGraduate, label: "Students" },
+    { icon: FaChalkboardTeacher, label: "Teachers" },
+    { icon: FaBookOpen, label: "Courses" },
+    { icon: FaCalendarCheck, label: "Attendance" },
+    { icon: FaClipboardList, label: "Examinations" },
+    { icon: FaMoneyBillWave, label: "Finance" },
+    { icon: FaBullhorn, label: "Announcements" },
+    { icon: FaFileAlt, label: "Reports" },
+    { icon: FaCog, label: "Settings" },
+  ]);
+
+  const toggleSidebar = (label) => {
+    setSidebarLinks((prevLinks) =>
+      prevLinks.map((link) =>
+        link.label === label
+          ? { ...link, active: true }
+          : { ...link, active: false }
+      )
+    );
+  };
+
   const [formData, setFormData] = useState({
-    studentName: '',
-    rollNumber: '',
-    grade: '',
-    section: '',
-    dateOfBirth: '',
-    parentName: '',
-    contactNumber: '',
-    email: '',
-    address: '',
-    emergencyContact: ''
+    studentName: "",
+    rollNumber: "",
+    grade: "",
+    section: "",
+    dateOfBirth: "",
+    parentName: "",
+    contactNumber: "",
+    email: "",
+    address: "",
+    emergencyContact: "",
+  });
+
+  // Navbar menu items with dropdowns
+  const navMenuItems = [
+    {
+      title: "option 1",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 2",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 3",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 4",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 5",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 6",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 7",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 8",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 9",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+    {
+      title: "option 10",
+      subItems: [
+        "sub-option 1",
+        "sub-option 2",
+        "sub-option 3",
+        "sub-option 4",
+        "sub-option 5",
+      ],
+    },
+  ];
+
+  const [activeNav, setActiveNav] = useState({
+    mainIndex: null,
+    subIndex: null,
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
-    alert('Form submitted successfully!');
+    console.log("Form Data:", formData);
+    alert("Form submitted successfully!");
   };
 
   const handleReset = () => {
     setFormData({
-      studentName: '',
-      rollNumber: '',
-      grade: '',
-      section: '',
-      dateOfBirth: '',
-      parentName: '',
-      contactNumber: '',
-      email: '',
-      address: '',
-      emergencyContact: ''
+      studentName: "",
+      rollNumber: "",
+      grade: "",
+      section: "",
+      dateOfBirth: "",
+      parentName: "",
+      contactNumber: "",
+      email: "",
+      address: "",
+      emergencyContact: "",
     });
   };
 
   return (
-    <div className="school-container">
+    <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-br from-blue-900 via-cyan-600 to-cyan-400 font-sans">
       {/* Navbar */}
-      <nav className="navbar">
-        <div className="navbar-left">
-          <button className="menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-            <FaBars />
-          </button>
-          <FaSchool className="school-logo" />
-          <h2>School Dashboard</h2>
+      <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] z-[100] border-b-[3px] border-cyan-500/30 backdrop-blur-[10px]">
+        {/* Top Bar with Logo and School Name */}
+        <div className="py-4 px-8 flex justify-between items-center border-b border-slate-700/50">
+          <div className="flex items-center gap-4">
+            <FaSchool className="text-[2.2rem] text-cyan-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] animate-[pulse_2s_ease-in-out_infinite]" />
+            <h2 className="text-2xl font-bold text-white m-0 [text-shadow:0_2px_4px_rgba(0,0,0,0.2)]">
+              School Dashboard
+            </h2>
+          </div>
+          <div>
+            <h1 className="text-[1.8rem] font-extrabold text-white m-0 tracking-[-0.5px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+              School Name
+            </h1>
+          </div>
         </div>
-        <div className="navbar-right">
-          <h1>School Name</h1>
+
+        {/* Navigation Menu */}
+        <div className="px-8 py-0">
+          <ul className="flex items-center gap-1 m-0 p-0 list-none">
+            {navMenuItems.map((item, index) => {
+              const isActiveMain = activeNav.mainIndex === index;
+
+              return (
+                <li key={index} className="relative group">
+                  <button
+                    className={`px-2 py-2 lg:px-4 lg:py-3 text-xs lg:text-sm font-semibold transition-all duration-300 cursor-pointer border-none bg-transparent uppercase tracking-wide relative text-cyan-100 hover:text-white hover:bg-slate-700/50 after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] lg:after:h-[3px] after:bg-cyan-400 after:transition-all after:duration-300 whitespace-nowrap ${
+                      isActiveMain
+                        ? "text-white bg-slate-700/60 after:w-full"
+                        : "after:w-0"
+                    }`}
+                    onClick={() =>
+                      setActiveNav({ mainIndex: index, subIndex: null })
+                    }
+                  >
+                    {item.title}
+                  </button>
+
+                  <div className="absolute top-full left-0 mt-0 w-32 lg:w-40 bg-slate-800 shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-[-10px] group-hover:translate-y-0 z-[200] border-t-2 border-cyan-400">
+                    <ul className="py-2 m-0 p-0 list-none">
+                      {item.subItems.map((subItem, subIndex) => {
+                        const isActiveSub =
+                          activeNav.mainIndex === index &&
+                          activeNav.subIndex === subIndex;
+
+                        return (
+                          <li key={subIndex}>
+                            <a
+                              href="#"
+                              className={`block px-3 py-2 lg:px-5 lg:py-3 text-xs lg:text-sm transition-all duration-200 no-underline border-l-4 hover:text-white hover:bg-slate-700/70 hover:border-cyan-400 hover:translate-x-1 ${
+                                isActiveSub
+                                  ? "text-white bg-slate-700/70 border-cyan-400 translate-x-1"
+                                  : "text-cyan-100 border-transparent"
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setActiveNav({ mainIndex: index, subIndex });
+                                console.log(
+                                  `Clicked: ${item.title} > ${subItem}`
+                                );
+                              }}
+                            >
+                              {subItem}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </nav>
 
-      <div className="main-content">
+      <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
-          <div className="sidebar-header">
-            <h3>Menu</h3>
+        <aside
+          className={`w-[280px] bg-gradient-to-b from-blue-900 to-cyan-700 text-white py-6 overflow-y-auto shadow-[4px_0_20px_rgba(0,0,0,0.2)] transition-all duration-300 ease-in-out border-r-[3px] border-cyan-500/50`}
+        >
+          <div className={`px-6 pb-4 border-b-2 border-gray-200 mb-4`}>
+            <h3
+              className={`opacity-100 text-xs font-bold text-cyan-200 uppercase tracking-[1.5px] m-0 [text-shadow:0_0_10px_rgba(103,232,249,0.5)]`}
+            >
+              Menu
+            </h3>
           </div>
-          <ul className="sidebar-menu">
-            <li className="sidebar-item active">
-              <FaChartLine className="icon" />
-              <span>Dashboard</span>
-            </li>
-            <li className="sidebar-item">
-              <FaUserGraduate className="icon" />
-              <span>Students</span>
-            </li>
-            <li className="sidebar-item">
-              <FaChalkboardTeacher className="icon" />
-              <span>Teachers</span>
-            </li>
-            <li className="sidebar-item">
-              <FaBookOpen className="icon" />
-              <span>Courses</span>
-            </li>
-            <li className="sidebar-item">
-              <FaCalendarCheck className="icon" />
-              <span>Attendance</span>
-            </li>
-            <li className="sidebar-item">
-              <FaClipboardList className="icon" />
-              <span>Examinations</span>
-            </li>
-            <li className="sidebar-item">
-              <FaMoneyBillWave className="icon" />
-              <span>Finance</span>
-            </li>
-            <li className="sidebar-item">
-              <FaBullhorn className="icon" />
-              <span>Announcements</span>
-            </li>
-            <li className="sidebar-item">
-              <FaFileAlt className="icon" />
-              <span>Reports</span>
-            </li>
-            <li className="sidebar-item">
-              <FaCog className="icon" />
-              <span>Settings</span>
-            </li>
+          <ul className="list-none p-0 m-0">
+            {sidebarLinks.map((item, index) => (
+              <li
+                key={index}
+                className={`flex items-center px-6 py-4 cursor-pointer transition-all duration-300 ease-in-out border-l-4 ${
+                  item.active
+                    ? "border-l-cyan-400 bg-gradient-to-r from-cyan-500/30 to-white/15 shadow-[0_4px_15px_rgba(6,182,212,0.4)]"
+                    : "border-l-transparent hover:border-l-cyan-400 hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-white/10"
+                } my-1 mx-2 relative rounded-r-[10px] hover:translate-x-[5px] group`}
+                onClick={() => toggleSidebar(item.label)}
+              >
+                <item.icon
+                  className={`text-lg lg:text-xl mr-2 lg:mr-3 xl:mr-4 w-5 lg:w-6 ${
+                    item.active
+                      ? "text-cyan-200 scale-[1.2] drop-shadow-[0_0_8px_rgba(103,232,249,0.6)]"
+                      : "text-cyan-100 group-hover:text-white group-hover:scale-[1.2] group-hover:rotate-[5deg]"
+                  } transition-all duration-300`}
+                />
+                <span
+                  className={`opacity-100 text-xs lg:text-sm xl:text-[0.95rem] ${
+                    item.active
+                      ? "text-white font-bold"
+                      : "text-cyan-100 font-semibold group-hover:text-white"
+                  } transition-all duration-300`}
+                >
+                  {item.label}
+                </span>
+              </li>
+            ))}
           </ul>
         </aside>
 
         {/* Right Content Area */}
-        <main className="content-area">
-          <div className="form-container">
-            <h2 className="form-title">Student Registration Form</h2>
+        <main className="flex-1 bg-white/10 p-4 lg:p-6 xl:p-10 overflow-y-auto backdrop-blur-[10px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
+          <div className="bg-white/95 rounded-[20px] p-6 lg:p-8 xl:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.3)] max-w-full border-2 border-white/50 backdrop-blur-[20px] animate-[slideIn_0.5s_ease-out]">
+            <h2 className="text-xl lg:text-3xl xl:text-[2.5rem] font-black bg-gradient-to-r from-blue-900 via-cyan-600 to-cyan-400 bg-clip-text text-transparent mb-6 lg:mb-8 xl:mb-10 text-center relative pb-4 lg:pb-6 uppercase tracking-wide after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] lg:after:w-[150px] after:h-[3px] lg:after:h-[5px] after:bg-gradient-to-r after:from-blue-900 after:via-cyan-600 after:to-cyan-400 after:rounded-[10px] after:shadow-[0_4px_15px_rgba(6,182,212,0.5)]">
+              Student Registration Form
+            </h2>
             <form onSubmit={handleSubmit}>
-              <div className="form-grid">
-                <div className="form-group">
-                  <label htmlFor="studentName">Student Name</label>
+              <div className="grid grid-cols-1 gap-4 lg:gap-5 xl:gap-6 mb-6 lg:mb-8 px-2 lg:px-6 xl:px-10 mx-0 lg:mx-4 xl:mx-10">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="studentName"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Student Name
+                  </label>
                   <input
                     type="text"
                     id="studentName"
@@ -140,11 +333,17 @@ const SchoolPage = () => {
                     value={formData.studentName}
                     onChange={handleInputChange}
                     placeholder="Enter student name"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="rollNumber">Roll Number</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="rollNumber"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Roll Number
+                  </label>
                   <input
                     type="text"
                     id="rollNumber"
@@ -152,11 +351,17 @@ const SchoolPage = () => {
                     value={formData.rollNumber}
                     onChange={handleInputChange}
                     placeholder="Enter roll number"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="grade">Grade</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="grade"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Grade
+                  </label>
                   <input
                     type="text"
                     id="grade"
@@ -164,11 +369,17 @@ const SchoolPage = () => {
                     value={formData.grade}
                     onChange={handleInputChange}
                     placeholder="Enter grade"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="section">Section</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="section"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Section
+                  </label>
                   <input
                     type="text"
                     id="section"
@@ -176,22 +387,34 @@ const SchoolPage = () => {
                     value={formData.section}
                     onChange={handleInputChange}
                     placeholder="Enter section"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="dateOfBirth">Date of Birth</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="dateOfBirth"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Date of Birth
+                  </label>
                   <input
                     type="date"
                     id="dateOfBirth"
                     name="dateOfBirth"
                     value={formData.dateOfBirth}
                     onChange={handleInputChange}
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="parentName">Parent/Guardian Name</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="parentName"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Parent/Guardian Name
+                  </label>
                   <input
                     type="text"
                     id="parentName"
@@ -199,11 +422,17 @@ const SchoolPage = () => {
                     value={formData.parentName}
                     onChange={handleInputChange}
                     placeholder="Enter parent name"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="contactNumber">Contact Number</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="contactNumber"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Contact Number
+                  </label>
                   <input
                     type="tel"
                     id="contactNumber"
@@ -211,11 +440,17 @@ const SchoolPage = () => {
                     value={formData.contactNumber}
                     onChange={handleInputChange}
                     placeholder="Enter contact number"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <label
+                    htmlFor="email"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -223,11 +458,17 @@ const SchoolPage = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Enter email address"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group full-width">
-                  <label htmlFor="address">Address</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2 col-span-1">
+                  <label
+                    htmlFor="address"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Address
+                  </label>
                   <input
                     type="text"
                     id="address"
@@ -235,11 +476,17 @@ const SchoolPage = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                     placeholder="Enter full address"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
 
-                <div className="form-group full-width">
-                  <label htmlFor="emergencyContact">Emergency Contact</label>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2 col-span-1">
+                  <label
+                    htmlFor="emergencyContact"
+                    className="text-xs lg:text-sm font-bold bg-gradient-to-r from-blue-900 to-slate-900 bg-clip-text text-transparent capitalize tracking-wide lg:w-40 xl:w-48 shrink-0"
+                  >
+                    Emergency Contact
+                  </label>
                   <input
                     type="tel"
                     id="emergencyContact"
@@ -247,15 +494,30 @@ const SchoolPage = () => {
                     value={formData.emergencyContact}
                     onChange={handleInputChange}
                     placeholder="Enter emergency contact number"
+                    className="flex-1 p-3 lg:p-4 px-4 lg:px-5 border-2 border-cyan-100 rounded-xl text-sm lg:text-base transition-all duration-300 bg-white font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] text-slate-900 font-medium placeholder:text-slate-400 placeholder:font-normal hover:border-cyan-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(6,182,212,0.15)] focus:outline-none focus:border-cyan-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_20px_rgba(6,182,212,0.15)] focus:-translate-y-0.5"
                   />
                 </div>
               </div>
 
-              <div className="form-actions">
-                <button type="submit" className="btn btn-primary">
+              <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center mt-6 lg:mt-8">
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="py-3 px-8 lg:py-[1.125rem] lg:px-12 rounded-xl text-sm lg:text-[1.05rem] font-bold cursor-pointer uppercase tracking-wide relative overflow-hidden bg-blue-900 text-white shadow-[0_8px_25px_rgba(30,58,138,0.4)] border-2 border-blue-800 transition-all duration-300 w-full sm:w-auto
+    hover:bg-blue-800 hover:-translate-y-[3px] hover:scale-[1.02] hover:shadow-[0_12px_35px_rgba(30,58,138,0.5)] 
+    active:translate-y-[1px] active:scale-100 active:shadow-[0_4px_15px_rgba(30,58,138,0.4)]"
+                >
                   Submit
                 </button>
-                <button type="button" onClick={handleReset} className="btn btn-secondary">
+
+                {/* Reset Button */}
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="py-3 px-8 lg:py-[1.125rem] lg:px-12 rounded-xl text-sm lg:text-[1.05rem] font-bold cursor-pointer uppercase tracking-wide relative overflow-hidden bg-cyan-600 text-white shadow-[0_8px_25px_rgba(6,182,212,0.4)] border-2 border-cyan-700 transition-all duration-300 w-full sm:w-auto
+    hover:bg-cyan-700 hover:-translate-y-[3px] hover:scale-[1.02] hover:shadow-[0_12px_35px_rgba(6,182,212,0.5)] 
+    active:translate-y-[1px] active:scale-100 active:shadow-[0_4px_15px_rgba(6,182,212,0.4)]"
+                >
                   Reset
                 </button>
               </div>
