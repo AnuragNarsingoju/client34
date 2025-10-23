@@ -1,292 +1,445 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const SchoolPage = () => {
-  const [sidebarActive, setSidebarActive] = useState(0);
-  const [formData, setFormData] = useState({
-    headerA: "",
-    headerB: "",
-    headerC: "",
-    headerD: "",
-    dateOfBirth: "",
-    parentName: "",
-    contactNumber: "",
-    email: "",
-    address: "",
-    emergencyContact: "",
-  });
+const SchoolPageNew = () => {
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [enrollmentNumber, setEnrollmentNumber] = useState("");
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  const navOptions = [
-    { id: 1, label: "Option 1", subItems: ["Sub 1", "Sub 2", "Sub 3"] },
-    { id: 2, label: "Option 2", subItems: ["Sub 1", "Sub 2", "Sub 3"] },
-    { id: 3, label: "Option 3", subItems: ["Sub 1", "Sub 2", "Sub 3"] },
-    { id: 4, label: "Option 4", subItems: ["Sub 1", "Sub 2", "Sub 3"] },
-    { id: 5, label: "Option 5", subItems: ["Sub 1", "Sub 2", "Sub 3"] },
-    { id: 6, label: "Option 6", subItems: ["Sub 1", "Sub 2", "Sub 3"] },
-    { id: 7, label: "Option 7", subItems: ["Sub 1", "Sub 2", "Sub 3"] },
+  // News ticker data - more comprehensive news items
+  const newsItems = [
+    "MHRM / MA Social work Last date or submission or proposal date- 15-03-2024.",
+    "New admissions open for 2024-25 academic year - Apply now!",
+    "Examination results will be declared on 20th March 2024.",
+    "Study material distribution starts from 1st April 2024.",
+    "Online classes schedule updated for all programmes.",
+    "Fee payment deadline extended to 25th March 2024.",
+    "Student portal maintenance scheduled for 18th March 2024.",
+    "Career guidance workshop on 22nd March 2024.",
+    "Library services now available 24/7 online.",
+    "Scholarship applications open for meritorious students.",
+    "International conference on Distance Education - 30th March 2024.",
+    "Alumni meet scheduled for 5th April 2024.",
   ];
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // Navigation menu items with dropdowns
+  const navItems = [
+    {
+      label: "HOME",
+      dropdown: [],
+    },
+    {
+      label: "ABOUT UNIVERSITY",
+      dropdown: [
+        "University History",
+        "Vision & Mission",
+        "Administration",
+        "Faculty",
+        "Infrastructure",
+      ],
+    },
+    {
+      label: "PROGRAMMES",
+      dropdown: [
+        "Undergraduate Programmes",
+        "Postgraduate Programmes",
+        "Certificate Courses",
+        "Diploma Courses",
+        "Research Programmes",
+      ],
+    },
+    {
+      label: "STUDY CENTRES",
+      dropdown: [
+        "Regional Centres",
+        "Study Centre Locations",
+        "Contact Information",
+        "Facilities",
+      ],
+    },
+    {
+      label: "ADMISSIONS",
+      dropdown: [
+        "Admission Notifications",
+        "Admission Application form",
+        "Fee Particulars",
+        "Method of Instruction",
+        "PROSPECTOUS",
+        "LATERAL ENTRY ADMISSIONS",
+        "ACADEMIC SCHEDULE",
+      ],
+    },
+    {
+      label: "STUDENT SERVICES",
+      dropdown: [
+        "Student Portal",
+        "Library Services",
+        "Career Guidance",
+        "Scholarship Information",
+        "Student Support",
+      ],
+    },
+    {
+      label: "EXAMINATIONS",
+      dropdown: [
+        "Exam Schedule",
+        "Results",
+        "Hall Tickets",
+        "Exam Guidelines",
+        "Revaluation",
+      ],
+    },
+    {
+      label: "e-Services/ERP",
+      dropdown: [
+        "Student Login",
+        "Faculty Login",
+        "Online Payment",
+        "Document Verification",
+        "Help Desk",
+      ],
+    },
+    {
+      label: "STUDY MATERIAL",
+      dropdown: [
+        "Course Materials",
+        "E-Books",
+        "Video Lectures",
+        "Assignment Guidelines",
+        "Reference Books",
+      ],
+    },
+    {
+      label: "CONTACT US",
+      dropdown: [
+        "Contact Information",
+        "Office Hours",
+        "Location Map",
+        "Feedback",
+        "Complaints",
+      ],
+    },
+  ];
+
+  // Sidebar menu items
+  const sidebarItems = [
+    {
+      label: "DASHBOARD",
+    },
+    {
+      label: "ACADEMICS",
+    },
+    {
+      label: "SERVICES",
+    },
+    {
+      label: "ACCOUNT",
+    },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    alert("Form submitted successfully!");
+    if (enrollmentNumber.trim()) {
+      alert(`Searching for enrollment number: ${enrollmentNumber}`);
+    } else {
+      alert("Please enter an enrollment number");
+    }
+  };
+
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-black">
-      {/* Top Navbar */}
-      <nav className="bg-blue-800 text-white px-6 py-4 flex items-center gap-8 border-b-2 border-blue-900">
-        {/* Logo and Title */}
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-blue-700 rounded flex items-center justify-center text-white font-bold text-sm">
-            Logo
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        isDarkTheme ? "bg-gray-900" : "bg-white"
+      }`}
+    >
+      {/* Top News Ticker */}
+      <div className="bg-[#e2227a] text-white py-2 px-4 flex items-center">
+        <span className="font-semibold mr-4 whitespace-nowrap">
+          Latest News:
+        </span>
+        <div className="flex-1 overflow-hidden">
+          <div className="animate-scroll font-bold whitespace-nowrap text-yellow-300">
+            {/* Duplicate the news items for seamless looping */}
+            {[...newsItems, ...newsItems].map((item, index) => (
+              <span key={index} className="mr-12 inline-block">
+                {item} •
+              </span>
+            ))}
           </div>
-          <h2 className="text-xl font-semibold whitespace-nowrap">Title</h2>
         </div>
+        <button className="text-white-500 px-4 py-1 hover:underline  text-sm font-bold">
+          Click Here For Admission Application Form
+        </button>
+      </div>
 
-        {/* Navigation Options */}
-        <div className="flex-1 flex items-center justify-end gap-6">
-          {navOptions.map((option) => (
-            <div key={option.id} className="relative group">
-              <button className="text-white hover:text-gray-200 text-base font-normal px-2 py-1">
-                {option.label}
-              </button>
-              {/* Dropdown */}
-              <div className="absolute top-full left-0 mt-1 w-48 bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <ul className="py-1">
-                  {option.subItems.map((subItem, idx) => (
-                    <li key={idx}>
+      {/* Main Header */}
+      <header className="bg-white">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Left - University Logo */}
+          <div className="flex-shrink-0">
+            <img
+              src="/header1.png"
+              alt="University Logo"
+              className="w-40 h-40 object-contain"
+            />
+          </div>
+
+          {/* Center - University Name */}
+          <div className="flex-shrink-0">
+            {/* <h1 className="text-2xl font-bold text-blue-900 mb-2">
+              ఆచార్య నాగార్జున విశ్వవిద్యాలయం
+            </h1>
+            <h2 className="text-2xl font-bold text-blue-900 mb-2">
+              ACHARYA NAGARJUNA UNIVERSITY
+            </h2>
+            <h3 className="text-xl font-bold text-blue-900 mb-1">
+              దూర విద్యా కేంద్రం
+            </h3>
+            <h4 className="text-xl font-bold text-blue-900 mb-2">
+              CENTRE FOR DISTANCE EDUCATION
+            </h4>
+            <p className="text-sm text-blue-900">
+              Recognized by UGC-DEB (Distance Education Bureau), New Delhi
+            </p> */}
+            <img
+              src="/header3.png"
+              alt="University Name"
+              className="w-108 h-64 object-contain"
+            />
+          </div>
+
+          {/* Right - Azadi Ka Amrit Mahotsav Logo */}
+          <div className="flex-shrink-0">
+            <img
+              src="/header2.png"
+              alt="Azadi Ka Amrit Mahotsav"
+              className="w-68 h-52 object-contain"
+            />
+          </div>
+        </div>
+      </header>
+
+      {/* Navigation Bar */}
+      <nav className="bg-[#12457b] text-white">
+        <div className="flex items-center justify-between px-2">
+          <div className="flex items-center justify-between space-x-1">
+            {navItems.map((item, index) => (
+              <div
+                key={index}
+                className="relative group hover:text-red-500"
+                onMouseEnter={() => setActiveDropdown(index)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button className="px-4 py-4 text-sm font-medium transition-all duration-300 ease-in-out flex items-center hover:text-red-500">
+                  <span className="text-white hover:text-yellow-300 hover:underline transition-colors duration-300 flex items-center justify-center">
+                    {item.label}
+                    {item.dropdown.length > 0 && (
+                      <svg
+                        className="ml-1 w-3 h-3 transition-transform duration-300 group-hover:rotate-180"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
+                  </span>
+                </button>
+
+                {/* Dropdown Menu */}
+                {item.dropdown.length > 0 && activeDropdown === index && (
+                  <div className="absolute top-full left-0 bg-[#12457b] shadow-xl z-50 min-w-64 border border-red-500/20 animate-fadeIn">
+                    {item.dropdown.map((dropdownItem, dropdownIndex) => (
                       <a
+                        key={dropdownIndex}
                         href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800 no-underline"
+                        className="block px-4 py-3 text-sm text-white hover:underline last:border-b-0 border-b border-gray-300 border-dashed"
                         onClick={(e) => e.preventDefault()}
                       >
-                        {subItem}
+                        {dropdownItem}
                       </a>
-                    </li>
-                  ))}
-                </ul>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </nav>
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left Sidebar */}
-        <aside className="w-64 bg-blue-800 text-white p-4 flex flex-col border-r-4 border-gray-400">
-          <div className="flex-1 space-y-3">
-            {[1, 2, 3, 4].map((num) => (
-              <button
-                key={num}
-                className={`w-full text-left px-6 py-4 text-base font-normal border-2 rounded ${
-                  sidebarActive === num
-                    ? "border-white bg-blue-700"
-                    : "border-white/70 bg-transparent hover:bg-blue-700"
-                }`}
-                onClick={() => setSidebarActive(num)}
-              >
-                Option {num}
-              </button>
-            ))}
-          </div>
-
-          {/* Logout Button */}
-          <button className="w-full px-6 py-4 text-base font-semibold border-2 border-red-500 text-red-500 bg-transparent hover:bg-red-500 hover:text-white rounded mt-auto">
-            Logout
-          </button>
-        </aside>
-
-        {/* Main Content */}
-        <main className="flex-1 bg-gray-300 p-6 overflow-y-auto">
-          <div className="bg-white rounded shadow-sm p-8 max-w-5xl mx-auto">
-            <form onSubmit={handleSubmit}>
-              {/* Table Layout */}
-              <table className="w-full border">
-                <tbody>
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base w-1/3 border-r border-gray-300">
-                      Header A
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="text"
-                        name="headerA"
-                        value={formData.headerA}
-                        onChange={handleInputChange}
-                        placeholder="Enter data for A"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Header B
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="text"
-                        name="headerB"
-                        value={formData.headerB}
-                        onChange={handleInputChange}
-                        placeholder="Enter data for B"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Header C
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="text"
-                        name="headerC"
-                        value={formData.headerC}
-                        onChange={handleInputChange}
-                        placeholder="Enter data for C"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Header D
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="text"
-                        name="headerD"
-                        value={formData.headerD}
-                        onChange={handleInputChange}
-                        placeholder="Enter data for D"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  {/* <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Date of Birth
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="date"
-                        name="dateOfBirth"
-                        value={formData.dateOfBirth}
-                        onChange={handleInputChange}
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Parent Name
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="text"
-                        name="parentName"
-                        value={formData.parentName}
-                        onChange={handleInputChange}
-                        placeholder="Enter parent name"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Contact Number
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="tel"
-                        name="contactNumber"
-                        value={formData.contactNumber}
-                        onChange={handleInputChange}
-                        placeholder="Enter contact number"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Email Address
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="Enter email"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Address
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        placeholder="Enter address"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr>
-
-                  <tr className="border-b border-gray-300">
-                    <td className="py-4 px-6 text-blue-800 font-bold text-base border-r border-gray-300">
-                      Emergency Contact
-                    </td>
-                    <td className="py-4 px-6">
-                      <input
-                        type="tel"
-                        name="emergencyContact"
-                        value={formData.emergencyContact}
-                        onChange={handleInputChange}
-                        placeholder="Enter emergency contact"
-                        className="w-full p-0 border-none text-gray-500 text-base focus:outline-none placeholder:text-gray-400"
-                      />
-                    </td>
-                  </tr> */}
-                </tbody>
-              </table>
-
-              {/* Submit Button */}
-              <div className="flex justify-center mt-8">
-                <button
-                  type="submit"
-                  className="py-3 px-16 bg-blue-800 text-white text-base font-semibold rounded hover:bg-blue-900 focus:outline-none"
+      {/* Main Content */}
+      <main
+        className={`transition-colors duration-300 ${
+          isDarkTheme ? "bg-gray-800" : "bg-white"
+        }`}
+      >
+        <div className="max-w-7xl flex gap-8">
+          {/* Sidebar */}
+          <aside
+            className={`w-64 p-6 shadow-sm transition-colors duration-300 ${
+              isDarkTheme ? "bg-gray-700" : "bg-gray-50"
+            }`}
+          >
+            <h3
+              className={`text-lg font-bold mb-6 text-center transition-colors duration-300 ${
+                isDarkTheme ? "text-white" : "text-gray-800"
+              }`}
+            >
+              Quick Access
+            </h3>
+            <div
+              className={`space-y-2 border transition-colors duration-300 ${
+                isDarkTheme ? "border-gray-600" : "border-gray-300"
+              }`}
+            >
+              {sidebarItems.map((item, index) => (
+                <div
+                  key={index}
+                  className={`relative group border transition-colors duration-300 ${
+                    isDarkTheme ? "border-gray-600" : "border-gray-300"
+                  }`}
                 >
-                  Submit
-                </button>
-              </div>
-            </form>
+                  <button
+                    className={`w-full text-left px-4 py-3 text-sm font-medium hover:bg-[#12457b] hover:text-yellow-300 hover:underline transition-all duration-300 border transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "text-gray-300 border-gray-600"
+                        : "text-gray-700 border-gray-300"
+                    }`}
+                  >
+                    <span className="flex items-center justify-between">
+                      {item.label}
+                    </span>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </aside>
+
+          {/* Main Content Area */}
+          <div className="flex-1">
+            {/* Results Banner */}
+            <div
+              className={`text-center py-4 transition-colors duration-300 ${
+                isDarkTheme ? "bg-orange-800" : "bg-orange-200"
+              }`}
+            >
+              <h2
+                className={`text-2xl font-bold transition-colors duration-300 ${
+                  isDarkTheme ? "text-orange-200" : "text-red-800"
+                }`}
+              >
+                August 2023 - RESULTS
+              </h2>
+            </div>
+
+            {/* Enrollment Form */}
+            <div
+              className={`border p-8 shadow-sm transition-colors duration-300 ${
+                isDarkTheme
+                  ? "bg-gray-700 border-gray-600"
+                  : "bg-white border-gray-300"
+              }`}
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="enrollment"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Enter Enrolment / Register Number
+                  </label>
+                  <input
+                    type="text"
+                    id="enrollment"
+                    value={enrollmentNumber}
+                    onChange={(e) => setEnrollmentNumber(e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter your enrollment number"
+                  />
+                </div>
+
+                <div className="text-center border border-gray-600">
+                  <button
+                    type="submit"
+                    className={`border px-8 py-2 transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-500 text-white hover:bg-gray-500"
+                        : "bg-white border-gray-500 text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-[#12457b] text-white py-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Left - Social Media */}
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={toggleTheme}
+                className="w-8 h-4 bg-yellow-400 rounded-full flex items-center transition-all duration-300 hover:scale-110 cursor-pointer"
+              >
+                <div
+                  className={`w-3 h-3 bg-white rounded-full transition-transform duration-300 ${
+                    isDarkTheme ? "ml-5" : "ml-1"
+                  }`}
+                ></div>
+              </button>
+            </div>
+            <span className="text-sm">Follow Us On</span>
+            <div className="flex space-x-3">
+              <a
+                href="#"
+                className="text-white hover:underline hover:text-red-500 transition-colors "
+              >
+                <img src="/icons/facebook.png" alt="Facebook" className="w-4 h-4" />
+              </a>
+              <a
+                href="#"
+                className="text-white hover:underline hover:text-red-500 transition-colors"
+              >
+                <img src="/icons/twitter.png" alt="Twitter" className="w-4 h-4" />
+              </a>
+              <a
+                href="#"
+                className="text-white hover:underline hover:text-red-500 transition-colors"
+              >
+                <img src="/icons/instagram.png" alt="Instagram" className="w-4 h-4" />
+              </a>
+              <a
+                href="#"
+                className="text-white hover:underline hover:text-red-500 transition-colors"
+              >   
+                <img src="/icons/linkedin.png" alt="LinkedIn" className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right - Copyright */}
+          <div className="text-sm">© All Rights Reserved @ 2023 ANU</div>
+        </div>
+      </footer>
     </div>
   );
 };
 
-export default SchoolPage;
+export default SchoolPageNew;
