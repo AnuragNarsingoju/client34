@@ -338,24 +338,24 @@ const SchoolPageNew = () => {
           {/* Main Content Area */}
           <div className="flex-1 w-full">
             {/* Results Banner */}
-            <div
+            {/* <div
               className="text-center py-4 transition-colors duration-300"
               style={{ backgroundColor: '#f5c5b0'}}
             >
               <h2 className="text-md font-bold transition-colors duration-300" style={{color:'#cf080f'}}>
                 August 2023 - RESULTS
               </h2>
-            </div>
+            </div> */}
 
             {/* Enrollment Form */}
             <div
-              className={`border p-8 shadow-sm transition-colors duration-300 ${
+              className={`border p-6 shadow-sm transition-colors duration-300 ${
                 isDarkTheme
                   ? "bg-gray-700 border-gray-600"
                   : "bg-white border-gray-300"
               }`}
             >
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} >
                 <div className="flex items-center space-x-4 border border-gray-600">
                   <label
                     htmlFor="enrollment"
