@@ -4,6 +4,18 @@ const SchoolPageNew = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [enrollmentNumber, setEnrollmentNumber] = useState("");
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [formData, setFormData] = useState({
+    studentName: "",
+    fatherName: "",
+    motherName: "",
+    dateOfBirth: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    course: "",
+    semester: "",
+    academicYear: "",
+  });
 
   // News ticker data - more comprehensive news items
   const newsItems = [
@@ -135,10 +147,17 @@ const SchoolPageNew = () => {
 
 ];
 
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (enrollmentNumber.trim()) {
-      alert(`Searching for enrollment number: ${enrollmentNumber}`);
+      alert(`Searching for enrollment number: ${enrollmentNumber}\n\nAdditional fields:\n${Object.entries(formData).map(([key, value]) => `${key}: ${value}`).join('\n')}`);
     } else {
       alert("Please enter an enrollment number");
     }
@@ -336,7 +355,7 @@ const SchoolPageNew = () => {
                 <div className="flex items-center space-x-4 border border-gray-600">
                   <label
                     htmlFor="enrollment"
-                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 ${
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
                       isDarkTheme ? "text-gray-200" : "text-gray-800"
                     }`}
                   >
@@ -353,6 +372,236 @@ const SchoolPageNew = () => {
                         : "border-gray-600"
                     }`}
                     placeholder="Enter your enrollment number"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="studentName"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Student Name
+                  </label>
+                  <input
+                    type="text"
+                    id="studentName"
+                    value={formData.studentName}
+                    onChange={(e) => handleInputChange("studentName", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter student name"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="fatherName"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Father's Name
+                  </label>
+                  <input
+                    type="text"
+                    id="fatherName"
+                    value={formData.fatherName}
+                    onChange={(e) => handleInputChange("fatherName", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter father's name"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="motherName"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Mother's Name
+                  </label>
+                  <input
+                    type="text"
+                    id="motherName"
+                    value={formData.motherName}
+                    onChange={(e) => handleInputChange("motherName", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter mother's name"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="dateOfBirth"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Date of Birth
+                  </label>
+                  <input
+                    type="date"
+                    id="dateOfBirth"
+                    value={formData.dateOfBirth}
+                    onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter date of birth"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="email"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter email address"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="phoneNumber"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter phone number"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="address"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    id="address"
+                    value={formData.address}
+                    onChange={(e) => handleInputChange("address", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter address"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="course"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Course
+                  </label>
+                  <input
+                    type="text"
+                    id="course"
+                    value={formData.course}
+                    onChange={(e) => handleInputChange("course", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter course name"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="semester"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Semester
+                  </label>
+                  <input
+                    type="text"
+                    id="semester"
+                    value={formData.semester}
+                    onChange={(e) => handleInputChange("semester", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter semester"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-4 border border-gray-600">
+                  <label
+                    htmlFor="academicYear"
+                    className={`mx-2 text-md font-medium whitespace-nowrap transition-colors duration-300 w-64 ${
+                      isDarkTheme ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    Academic Year
+                  </label>
+                  <input
+                    type="text"
+                    id="academicYear"
+                    value={formData.academicYear}
+                    onChange={(e) => handleInputChange("academicYear", e.target.value)}
+                    className={`flex-1 px-4 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 ${
+                      isDarkTheme
+                        ? "bg-gray-600 border-gray-700 text-white placeholder-gray-400"
+                        : "border-gray-600"
+                    }`}
+                    placeholder="Enter academic year (e.g., 2023-24)"
                   />
                 </div>
 
