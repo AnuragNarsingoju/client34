@@ -178,15 +178,15 @@ const SchoolPageNew = () => {
       }`}
     >
       {/* Top News Ticker */}
-      <div className="bg-[#e2227a] text-white py-2 px-4 flex items-center">
+      {/* <div className="bg-[#e2227a] text-white py-2 px-4 flex items-center">
         <span className="font-semibold mr-4 whitespace-nowrap">
           Latest News:
         </span>
         <div className="flex-1 overflow-hidden">
           <div className="animate-scroll font-bold whitespace-nowrap text-yellow-300">
             {/* Duplicate the news items for seamless looping */}
-            {[...newsItems, ...newsItems].map((item, index) => (
-              <span key={index} className="mr-12 inline-block">
+            {/* {[...newsItems, ...newsItems].map((item, index) => ( */}
+              {/* <span key={index} className="mr-12 inline-block">
                 {item} •
               </span>
             ))}
@@ -195,11 +195,11 @@ const SchoolPageNew = () => {
         <button className="text-white-500 px-4 py-1 hover:underline  text-sm font-bold">
           Click Here For Admission Application Form
         </button>
-      </div>
+      </div> */} 
 
       {/* Main Header */}
-      <header className="bg-white">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <header className="bg-[yellow] ">
+        <div className="max-w-7xl mx-auto flex items-center justify-between ">
           {/* Left - University Logo */}
           {/* <div className="flex-shrink-0">
             <img
@@ -210,10 +210,10 @@ const SchoolPageNew = () => {
           </div> */}
 
           {/* Center - University Name */}
-          <div className="text-center flex-1">
+          <div className="text-center flex-1 bg-[yellow] ">
    
            
-            <h2 className="text-2xl font-bold text-blue-900 mb-2">
+            <h2 className="text-2xl bg-[yellow] font-bold text-blue-900 mb-2">
              Admin panel 
             </h2>
             </div>
@@ -355,7 +355,7 @@ const SchoolPageNew = () => {
                   : "bg-white border-gray-300"
               }`}
             >
-              <form onSubmit={handleSubmit} >
+              <form style={{marginTop:'100px'}} onSubmit={handleSubmit} >
                 <div className="flex items-center space-x-4 border border-gray-600">
                   <label
                     htmlFor="enrollment"
