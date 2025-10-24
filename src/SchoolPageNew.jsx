@@ -15,6 +15,7 @@ const SchoolPageNew = () => {
     course: "",
     semester: "",
     academicYear: "",
+    
   });
 
   // News ticker data - more comprehensive news items
@@ -144,6 +145,9 @@ const SchoolPageNew = () => {
   { label: "EXAM RESULTS" },
   { label: "LIBRARY" },
   { label: "HOSTEL" },
+  { label: "TRANSPORT" },
+  { label: "SETTINGS" },
+  { label: "HELP & SUPPORT" }
 
 ];
 
