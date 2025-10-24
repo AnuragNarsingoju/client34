@@ -609,7 +609,10 @@ const SchoolPageNew = () => {
                   />
                 </div>
 
-                <div className="text-center border border-gray-600">
+                
+              </form>
+
+              <div className="text-center mt-5">
                   <button
                     type="submit"
                     className={`border px-2 rounded-sm transition-colors duration-300 ${
@@ -621,7 +624,6 @@ const SchoolPageNew = () => {
                     Submit
                   </button>
                 </div>
-              </form>
             </div>
           </div>
         </div>
