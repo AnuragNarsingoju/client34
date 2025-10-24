@@ -121,20 +121,21 @@ const SchoolPageNew = () => {
   ];
 
   // Sidebar menu items
-  const sidebarItems = [
-    {
-      label: "DASHBOARD",
-    },
-    {
-      label: "ACADEMICS",
-    },
-    {
-      label: "SERVICES",
-    },
-    {
-      label: "ACCOUNT",
-    },
-  ];
+ const sidebarItems = [
+  { label: "DASHBOARD" },
+  { label: "ACADEMICS" },
+  { label: "SERVICES" },
+  { label: "ACCOUNT" },
+  { label: "STUDENTS" },
+  { label: "FACULTY" },
+  { label: "ATTENDANCE" },
+  { label: "EXAM RESULTS" },
+  { label: "LIBRARY" },
+  { label: "HOSTEL" },
+  { label: "TRANSPORT" },
+  { label: "SETTINGS" },
+  { label: "HELP & SUPPORT" },
+];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -179,51 +180,43 @@ const SchoolPageNew = () => {
       <header className="bg-white">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Left - University Logo */}
-          <div className="flex-shrink-0">
+          {/* <div className="flex-shrink-0">
             <img
               src="/header1.png"
               alt="University Logo"
               className="w-40 h-40 object-contain"
             />
-          </div>
+          </div> */}
 
           {/* Center - University Name */}
-          <div className="flex-shrink-0">
-            {/* <h1 className="text-2xl font-bold text-blue-900 mb-2">
-              ఆచార్య నాగార్జున విశ్వవిద్యాలయం
-            </h1>
+          <div className="text-center flex-1">
+   
+           
             <h2 className="text-2xl font-bold text-blue-900 mb-2">
-              ACHARYA NAGARJUNA UNIVERSITY
+             Admin panel 
             </h2>
-            <h3 className="text-xl font-bold text-blue-900 mb-1">
-              దూర విద్యా కేంద్రం
-            </h3>
-            <h4 className="text-xl font-bold text-blue-900 mb-2">
-              CENTRE FOR DISTANCE EDUCATION
-            </h4>
-            <p className="text-sm text-blue-900">
-              Recognized by UGC-DEB (Distance Education Bureau), New Delhi
-            </p> */}
-            <img
+            </div>
+            
+            {/* <img
               src="/header3.png"
               alt="University Name"
               className="w-108 h-64 object-contain"
-            />
-          </div>
+            /> */}
+
 
           {/* Right - Azadi Ka Amrit Mahotsav Logo */}
-          <div className="flex-shrink-0">
+          {/* <div className="flex-shrink-0">
             <img
               src="/header2.png"
               alt="Azadi Ka Amrit Mahotsav"
               className="w-68 h-52 object-contain"
             />
-          </div>
+          </div> */}
         </div>
       </header>
 
       {/* Navigation Bar */}
-      <nav className="bg-[#12457b] text-white">
+      <nav className="bg-[#12457a] text-white">
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center justify-between space-x-1">
             {navItems.map((item, index) => (
@@ -279,16 +272,16 @@ const SchoolPageNew = () => {
           isDarkTheme ? "bg-gray-800" : "bg-white"
         }`}
       >
-        <div className="max-w-7xl flex gap-8">
+        <div className="flex border-t border-b">
           {/* Sidebar */}
           <aside
             className={`w-64 p-6 shadow-sm transition-colors duration-300 ${
-              isDarkTheme ? "bg-gray-700" : "bg-gray-50"
+              isDarkTheme ? "bg-[#12457a]" : "bg-[#12457a]"
             }`}
           >
             <h3
               className={`text-lg font-bold mb-6 text-center transition-colors duration-300 ${
-                isDarkTheme ? "text-white" : "text-gray-800"
+                isDarkTheme ? "text-white" : "text-white"
               }`}
             >
               Quick Access
@@ -308,8 +301,8 @@ const SchoolPageNew = () => {
                   <button
                     className={`w-full text-left px-4 py-3 text-sm font-medium hover:bg-[#12457b] hover:text-yellow-300 hover:underline transition-all duration-300 border transition-colors duration-300 ${
                       isDarkTheme
-                        ? "text-gray-300 border-gray-600"
-                        : "text-gray-700 border-gray-300"
+                        ? "text-white border-gray-600"
+                        : "text-white border-gray-300"
                     }`}
                   >
                     <span className="flex items-center justify-between">
@@ -322,18 +315,13 @@ const SchoolPageNew = () => {
           </aside>
 
           {/* Main Content Area */}
-          <div className="flex-1">
+          <div className="flex-1 w-full">
             {/* Results Banner */}
             <div
-              className={`text-center py-4 transition-colors duration-300 ${
-                isDarkTheme ? "bg-orange-800" : "bg-orange-200"
-              }`}
+              className="text-center py-4 transition-colors duration-300"
+              style={{ backgroundColor: '#f5c5b0'}}
             >
-              <h2
-                className={`text-2xl font-bold transition-colors duration-300 ${
-                  isDarkTheme ? "text-orange-200" : "text-red-800"
-                }`}
-              >
+              <h2 className="text-md font-bold transition-colors duration-300" style={{color:'#cf080f'}}>
                 August 2023 - RESULTS
               </h2>
             </div>
@@ -373,10 +361,10 @@ const SchoolPageNew = () => {
                 <div className="text-center border border-gray-600">
                   <button
                     type="submit"
-                    className={`border px-8 py-2 transition-colors duration-300 ${
+                    className={`border px-2 rounded-sm transition-colors duration-300 ${
                       isDarkTheme
-                        ? "bg-gray-600 border-gray-500 text-white hover:bg-gray-500"
-                        : "bg-white border-gray-500 text-gray-800 hover:bg-gray-50"
+                        ? "bg-gray-200 border-gray-500 text-white hover:bg-gray-500"
+                        : "bg-gray-200 border-gray-500 text-gray-800 hover:bg-gray-50"
                     }`}
                   >
                     Submit
@@ -389,7 +377,7 @@ const SchoolPageNew = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#12457b] text-white py-6">
+      <footer className="bg-[#1e2c75] text-white py-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Left - Social Media */}
           <div className="flex items-center space-x-4">
