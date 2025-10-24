@@ -132,9 +132,7 @@ const SchoolPageNew = () => {
   { label: "EXAM RESULTS" },
   { label: "LIBRARY" },
   { label: "HOSTEL" },
-  { label: "TRANSPORT" },
-  { label: "SETTINGS" },
-  { label: "HELP & SUPPORT" },
+
 ];
 
   const handleSubmit = (e) => {
