@@ -296,7 +296,7 @@ const SchoolPageNew = () => {
         <div className="flex border-t border-b">
           {/* Sidebar */}
           <aside
-            className={`w-64 p-6 shadow-sm transition-colors duration-300 ${
+            className={`w-64 p-4 shadow-sm transition-colors duration-300 ${
               isDarkTheme ? "bg-[#12457a]" : "bg-[#12457a]"
             }`}
           >
@@ -320,7 +320,7 @@ const SchoolPageNew = () => {
                   }`}
                 >
                   <button
-                    className={`w-full text-left px-4 py-3 text-sm font-medium hover:bg-[#12457b] hover:text-yellow-300 hover:underline transition-all duration-300 border transition-colors duration-300 ${
+                    className={`w-full text-left px-4 py-3 text-sm font-medium hover:bg-[#12457b] hover:text-yellow-300 hover:underline transition-all duration-300 transition-colors duration-300 ${
                       isDarkTheme
                         ? "text-white border-gray-600"
                         : "text-white border-gray-300"
